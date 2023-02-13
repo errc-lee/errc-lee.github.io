@@ -13,6 +13,7 @@ import Cursor from "../components/Cursor";
 
 // Local Data
 import data from "../data/portfolio.json";
+import Skills from "../components/Skills";
 
 export default function Home() {
   // Ref
@@ -73,11 +74,11 @@ export default function Home() {
             </h1>
             <h1
               ref={textTwo}
-              className="text-3xl tablet:text-6xl laptop:text-6xl laptopl:text-8xl p-1 tablet:p-2 text-bold w-full laptop:w-4/5"
+              className="text-xl tablet:text-2xl laptop:text-2xl laptopl:text-3xl p-1 tablet:p-2 text-bold w-full laptop:w-4/5"
             >
               {data.headerTaglineTwo}
             </h1>
-            <h1
+            {/* <h1
               ref={textThree}
               className="text-3xl tablet:text-6xl laptop:text-6xl laptopl:text-8xl p-1 tablet:p-2 text-bold w-full laptop:w-4/5"
             >
@@ -88,13 +89,29 @@ export default function Home() {
               className="text-3xl tablet:text-6xl laptop:text-6xl laptopl:text-8xl p-1 tablet:p-2 text-bold w-full laptop:w-4/5"
             >
               {data.headerTaglineFour}
-            </h1>
+            </h1> */}
           </div>
 
           <Socials className="mt-2 laptop:mt-5" />
         </div>
         <div className="mt-10 laptop:mt-30 p-2 laptop:p-0" ref={workRef}>
-          <h1 className="text-2xl text-bold">Work.</h1>
+          <h1 className="text-2xl text-bold">.Experience_</h1>
+
+          <div className="mt-5 laptop:mt-10 grid grid-cols-1 tablet:grid-cols-2 gap-4">
+            {data.experience.map((project) => (
+              <WorkCard
+                key={project.id}
+                img={project.imageSrc}
+                name={project.title}
+                description={project.description}
+                onClick={() => window.open(project.url)}
+              />
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-10 laptop:mt-30 p-2 laptop:p-0" ref={workRef}>
+          <h1 className="text-2xl text-bold">.Projects_</h1>
 
           <div className="mt-5 laptop:mt-10 grid grid-cols-1 tablet:grid-cols-2 gap-4">
             {data.projects.map((project) => (
@@ -109,7 +126,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="mt-10 laptop:mt-30 p-2 laptop:p-0">
+        {/* <div className="mt-10 laptop:mt-30 p-2 laptop:p-0">
           <h1 className="tablet:m-10 text-2xl text-bold">Services.</h1>
           <div className="mt-5 tablet:m-10 grid grid-cols-1 laptop:grid-cols-2 gap-6">
             {data.services.map((service, index) => (
@@ -120,7 +137,7 @@ export default function Home() {
               />
             ))}
           </div>
-        </div>
+        </div> */}
         {/* This button should not go into production */}
         {process.env.NODE_ENV === "development" && (
           <div className="fixed bottom-5 right-5">
@@ -130,10 +147,13 @@ export default function Home() {
           </div>
         )}
         <div className="mt-10 laptop:mt-40 p-2 laptop:p-0" ref={aboutRef}>
-          <h1 className="tablet:m-10 text-2xl text-bold">About.</h1>
+          <h1 className="tablet:m-10 text-2xl text-bold">.About me_</h1>
           <p className="tablet:m-10 mt-2 text-xl laptop:text-3xl w-full laptop:w-3/5">
             {data.aboutpara}
           </p>
+
+          <h1 className="tablet:m-10 text-2xl text-bold mt-10">.Technologies I have worked with_</h1>
+          <Skills skills={data.skills} />
         </div>
         <Footer />
       </div>

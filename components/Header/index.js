@@ -11,11 +11,15 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  const { name, showBlog, showResume } = data;
+  const { name, showBlog, email, showResume } = data;
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  const openInNewTab = (url) => {
+    window.open(url, '_blank', 'noreferrer');
+  };
 
   return (
     <>
@@ -77,7 +81,7 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
                   {showResume && (
                     <Button
                       onClick={() =>
-                        window.open("mailto:hello@chetanverma.com")
+                        window.open(`mailto:${email}`)
                       }
                     >
                       Resume
@@ -85,7 +89,7 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
                   )}
 
                   <Button
-                    onClick={() => window.open("mailto:hello@chetanverma.com")}
+                    onClick={() => window.open(`mailto:${email}`)}
                   >
                     Contact
                   </Button>
@@ -108,7 +112,7 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
                   )}
 
                   <Button
-                    onClick={() => window.open("mailto:hello@chetanverma.com")}
+                    onClick={() => window.open(`mailto:${email}`)}
                   >
                     Contact
                   </Button>
@@ -138,14 +142,14 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
             )}
             {showResume && (
               <Button
-                onClick={() => router.push("/resume")}
+                onClick={() => openInNewTab('https://drive.google.com/file/d/1l1Kq9HNFLfzQvgT_vIRHs3AICL4hF9rd/view?usp=share_link')}
                 classes="first:ml-1"
               >
                 Resume
               </Button>
             )}
 
-            <Button onClick={() => window.open("mailto:hello@chetanverma.com")}>
+            <Button onClick={() => window.open(`mailto:${email}`)}>
               Contact
             </Button>
             {mounted && theme && data.darkMode && (
@@ -174,7 +178,7 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
               </Button>
             )}
 
-            <Button onClick={() => window.open("mailto:hello@chetanverma.com")}>
+            <Button onClick={() => window.open(`mailto:${email}`)}>
               Contact
             </Button>
 
